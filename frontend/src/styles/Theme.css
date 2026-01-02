@@ -1,0 +1,93 @@
+:root {
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --primary-color: #4a6bff;
+  --primary-hover: #3a5bef;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --primary-color: #6b8cff;
+  --primary-hover: #5a7bef;
+  --border-color: #333333;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --card-bg: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease;
+}
+/* Add this at the beginning of Theme.css */
+:root {
+  /* Default Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --primary-color: #4a6bff;
+  --primary-hover: #3a5bef;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --primary-color: #6b8cff;
+  --primary-hover: #5a7bef;
+  --border-color: #333333;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --card-bg: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+/* Add smooth transitions for mobile */
+* {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              transform 0.3s ease,
+              opacity 0.3s ease;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Improve tap targets on mobile */
+button,
+input,
+select,
+textarea {
+  font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Better touch scrolling */
+.main-content {
+  -webkit-overflow-scrolling: touch;
+}
