@@ -9,7 +9,13 @@ import '../styles/History.css';
 
 const HistoryPage = () => {
   const [tenants, setTenants] = useState([]);
-  const [stats, setStats] = useState({ total: 0, qr: 0, manual: 0 });
+  const [stats, setStats] = useState({
+    total: 0,
+    qr: 0,
+    manual: 0,
+    totalPaid: 0,
+    totalBalance: 0,
+  });
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     year: 'all',
@@ -27,7 +33,7 @@ const HistoryPage = () => {
   const fetchHistory = async () => {
     try {
       setLoading(true);
-      
+
       // Build query string from filters
       const queryParams = new URLSearchParams();
       if (filters.year !== 'all') queryParams.append('year', filters.year);
@@ -36,15 +42,24 @@ const HistoryPage = () => {
       if (filters.status !== 'all') queryParams.append('status', filters.status);
       if (filters.source !== 'all') queryParams.append('source', filters.source);
       if (filters.search) queryParams.append('search', filters.search);
-      
+
       const response = await api.get(`/tenants/history?${queryParams}`);
-      setTenants(response.data.tenants || []);
-      setStats(response.data.stats || { total: 0, qr: 0, manual: 0 });
-      
+      const tenantData = response.data.tenants || [];
+
+      // Calculate totalPaid and totalBalance
+      const totalPaid = tenantData.reduce((sum, t) => sum + (t.totalPaid || 0), 0);
+      const totalBalance = tenantData.reduce((sum, t) => sum + (t.balance || 0), 0);
+
+      setTenants(tenantData);
+      setStats({
+        ...response.data.stats,
+        totalPaid,
+        totalBalance,
+      });
     } catch (error) {
       console.error('Error fetching history:', error);
       setTenants([]);
-      setStats({ total: 0, qr: 0, manual: 0 });
+      setStats({ total: 0, qr: 0, manual: 0, totalPaid: 0, totalBalance: 0 });
       if (error.response?.status !== 401) {
         toast.error('Failed to load history');
       }
@@ -76,14 +91,15 @@ const HistoryPage = () => {
       <Header />
       <div className="dashboard-content">
         <Sidebar />
-        
+
         <main className="main-content">
           <div className="page-header">
             <div>
               <h2>Tenants History</h2>
               <p>View and filter all tenant records</p>
             </div>
-            
+
+            {/* Stats Cards */}
             <div className="history-stats">
               <div className="stat-card">
                 <div className="stat-icon total">👥</div>
@@ -106,6 +122,21 @@ const HistoryPage = () => {
                   <p>QR Applications</p>
                 </div>
               </div>
+              {/* Payment Stats */}
+              <div className="stat-card">
+                <div className="stat-icon paid">💰</div>
+                <div className="stat-content">
+                  <h3>₹{stats.totalPaid.toLocaleString()}</h3>
+                  <p>Total Paid</p>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon balance">⚖️</div>
+                <div className="stat-content">
+                  <h3>₹{stats.totalBalance.toLocaleString()}</h3>
+                  <p>Total Balance</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -114,7 +145,7 @@ const HistoryPage = () => {
               filters={filters}
               onFilterChange={handleFilterChange}
             />
-            
+
             <div className="history-content">
               <HistoryTable
                 tenants={tenants}

@@ -23,6 +23,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
   return (
     <div className="history-filters">
       <div className="filters-grid">
+        {/* Year */}
         <div className="filter-group">
           <label>Year</label>
           <select
@@ -36,6 +37,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
           </select>
         </div>
 
+        {/* Month */}
         <div className="filter-group">
           <label>Month</label>
           <select
@@ -51,6 +53,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
           </select>
         </div>
 
+        {/* Room Type */}
         <div className="filter-group">
           <label>Room Type</label>
           <select
@@ -65,6 +68,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
           </select>
         </div>
 
+        {/* Status */}
         <div className="filter-group">
           <label>Status</label>
           <select
@@ -77,6 +81,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
           </select>
         </div>
 
+        {/* Source */}
         <div className="filter-group">
           <label>Source</label>
           <select
@@ -89,6 +94,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
           </select>
         </div>
 
+        {/* Search */}
         <div className="filter-group search-group">
           <label>Search</label>
           <input
@@ -100,6 +106,7 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
         </div>
       </div>
 
+      {/* Filter Actions */}
       <div className="filter-actions">
         <button
           className="clear-filters"

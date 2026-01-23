@@ -14,9 +14,7 @@ const HistoryTable = ({ tenants, loading }) => {
   };
 
   const getSourceBadge = (source) => {
-    if (source === 'qr') {
-      return <span className="source-badge qr">QR Application</span>;
-    }
+    if (source === 'qr') return <span className="source-badge qr">QR Application</span>;
     return <span className="source-badge manual">Manual</span>;
   };
 
@@ -49,7 +47,7 @@ const HistoryTable = ({ tenants, loading }) => {
             <th>Room Details</th>
             <th>Admission Date</th>
             <th>Source</th>
-            <th>Monthly Rent</th>
+            <th>Rent Details 💰</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -59,9 +57,7 @@ const HistoryTable = ({ tenants, loading }) => {
             <tr key={tenant._id}>
               <td>
                 <div className="tenant-info-cell">
-                  <div className="tenant-avatar-small">
-                    {tenant.name.charAt(0).toUpperCase()}
-                  </div>
+                  <div className="tenant-avatar-small">{tenant.name.charAt(0).toUpperCase()}</div>
                   <div>
                     <div className="tenant-name">{tenant.name}</div>
                     <div className="tenant-email">{tenant.email}</div>
@@ -71,9 +67,7 @@ const HistoryTable = ({ tenants, loading }) => {
               <td>
                 <div className="contact-cell">
                   <div>{tenant.phone}</div>
-                  <div className="emergency-contact">
-                    Emergency: {tenant.emergencyContact}
-                  </div>
+                  <div className="emergency-contact">Emergency: {tenant.emergencyContact}</div>
                 </div>
               </td>
               <td>
@@ -83,15 +77,13 @@ const HistoryTable = ({ tenants, loading }) => {
                 </div>
               </td>
               <td>{formatDate(tenant.admissionDate)}</td>
-              <td>
-                {getSourceBadge(tenant.source || 'manual')}
-              </td>
+              <td>{getSourceBadge(tenant.source || 'manual')}</td>
               <td>
                 <div className="rent-cell">
-                  <span className="rent-amount">₹{tenant.monthlyRent}</span>
-                  <div className="deposit-amount">
-                    Deposit: ₹{tenant.securityDeposit}
-                  </div>
+                  <div>Monthly Rent: ₹{tenant.monthlyRent}</div>
+                  <div>Deposit: ₹{tenant.securityDeposit}</div>
+                  <div>Total Paid: ₹{tenant.totalPaid}</div>
+                  <div>Balance: ₹{tenant.balance}</div>
                 </div>
               </td>
               <td>
@@ -119,13 +111,12 @@ const HistoryTable = ({ tenants, loading }) => {
           ))}
         </tbody>
       </table>
-      
+
       <div className="table-footer">
-        <div className="table-stats">
-          Showing {tenants.length} records
-        </div>
+        <div className="table-stats">Showing {tenants.length} records</div>
         <div className="table-summary">
-          Total Rent: ₹{tenants.reduce((sum, t) => sum + (t.monthlyRent || 0), 0).toLocaleString()}
+          Total Rent Collected: ₹
+          {tenants.reduce((sum, t) => sum + (t.totalPaid || 0), 0).toLocaleString()}
         </div>
       </div>
     </div>
