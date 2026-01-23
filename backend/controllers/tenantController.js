@@ -1,4 +1,6 @@
 const Tenant = require('../models/Tenant');
+const Payment = require('../models/Payment');
+
 
 // @desc    Create new tenant
 // @route   POST /api/tenants
@@ -185,9 +187,7 @@ const deleteTenant = async (req, res) => {
   }
 };
 
-// @desc    Get single tenant
-// @route   GET /api/tenants/:id
-// @access  Private
+
 const getTenantById = async (req, res) => {
   try {
     const tenant = await Tenant.findOne({
@@ -199,11 +199,27 @@ const getTenantById = async (req, res) => {
       return res.status(404).json({ message: 'Tenant not found' });
     }
 
-    res.json(tenant);
+    // 🔥 STEP: Calculate total paid
+    const payments = await Payment.find({
+      tenantId: tenant._id,
+      createdBy: req.user._id,
+    });
+
+    const totalPaid = payments.reduce(
+      (sum, payment) => sum + payment.amount,
+      0
+    );
+
+    res.json({
+      ...tenant.toObject(),
+      totalPaid,
+    });
   } catch (error) {
+    console.error('Get tenant error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 // @desc    Get all tenants with filters
 // @route   GET /api/tenants/history

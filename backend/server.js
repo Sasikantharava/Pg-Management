@@ -42,6 +42,8 @@ app.use("/api/tenants", require("./routes/tenantRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/qr", require("./routes/qrRoutes"));
 app.use("/api/applications", require("./routes/applicationRoutes"));
+app.use('/api/payments', require('./routes/paymentRoutes'));
+
 
 // Test route
 app.get("/api/test", (req, res) => {
