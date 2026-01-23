@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getTenantHistory } = require('../controllers/historyController');
+const { protect } = require('../middleware/authMiddleware');
+const { getAllTenantsWithFilters } = require('../controllers/tenantController');
 
-router.get('/', getTenantHistory);
+// GET /api/tenants/history
+router.get('/history', protect, getAllTenantsWithFilters);
 
 module.exports = router;
