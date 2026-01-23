@@ -212,8 +212,8 @@ const AddTenantForm = () => {
                 >
                   <option value="Single">Single Room</option>
                   <option value="Double">Double Room</option>
-                  <option value="3-Sharing">3-Sharing</option>
-                  <option value="4-sharing">4-sharing</option>
+                  <option value="triple">triple</option>
+                  <option value="quad">quad</option>
                 </select>
               </div>
             </div>

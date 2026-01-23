@@ -60,8 +60,8 @@ const HistoryFilters = ({ filters, onFilterChange, onExport }) => {
             <option value="all">All Types</option>
             <option value="Single">Single</option>
             <option value="Double">Double</option>
-            <option value="3-Sharing">3-Sharing Room</option>
-            <option value="4-Sharing">4-Sharing Room</option>
+            <option value="triple">triple Room</option>
+            <option value="quad">quad Room</option>
           </select>
         </div>
 

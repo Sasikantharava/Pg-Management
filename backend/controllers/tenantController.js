@@ -289,7 +289,7 @@ const getAllTenantsWithFilters = async (req, res) => {
           month: m._id.month,
           label: `${m._id.year}-${String(m._id.month).padStart(2, '0')}`,
         })),
-        roomTypes: ['Single', 'Double', '3-Sharing','4-Sharing'],
+        roomTypes: ['Single', 'Double', 'triple','quad'],
         sources: ['manual', 'qr'],
       },
     });

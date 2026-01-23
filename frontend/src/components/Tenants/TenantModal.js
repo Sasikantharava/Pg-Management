@@ -170,8 +170,8 @@ const TenantModal = ({ tenant, onClose, onUpdate }) => {
                   >
                     <option value="Single">Single</option>
                     <option value="Double">Double</option>
-                    <option value="3-Sharing">3-Sharing</option>
-                    <option value="4-Sharing">4-Sharing</option>
+                    <option value="triple">triple</option>
+                    <option value="quad">quad</option>
                   </select>
                 </div>
               </div>

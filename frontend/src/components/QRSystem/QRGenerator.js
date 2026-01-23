@@ -118,8 +118,8 @@ const QRGenerator = ({ onQRGenerated }) => {
               >
                 <option value="Single">Single Room</option>
                 <option value="Double">Double Room</option>
-                <option value="3-Sharing">3-Sharing Room</option>
-                <option value="4-Sharing">4-Sharing Room</option>
+                <option value="triple">triple Room</option>
+                <option value="quad">quad Room</option>
               </select>
             </div>
 

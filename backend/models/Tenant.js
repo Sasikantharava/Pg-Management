@@ -27,7 +27,7 @@ const tenantSchema = mongoose.Schema(
     },
     roomType: {
       type: String,
-      enum: ['Single', 'Double', '3-Sharing','4-Sharing'],
+      enum: ['Single', 'Double', 'triple','quad'],
       default: 'Single',
     },
     admissionDate: {
